@@ -4,10 +4,18 @@
  */
 package jdbc;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author GERAL
  */
 public class TesteConexao {
-    
+    public static void main(String[] args){
+        try{
+            ModuloConexao.conectar();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Opa aconteceu o erro: "+erro);
+        }
+    }
 }
