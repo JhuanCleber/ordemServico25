@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import jdbc.ModuloConexao;
+import model.Usuario;
 import view.TelaLogin;
 import view.TelaPrincipal;
 
@@ -41,9 +42,18 @@ public class UsuarioDAO {
 
             if (rs.next()) {
                 //Usuario logou
-                TelaPrincipal tela = new TelaPrincipal();
-                tela.setVisible(true);
-                
+                String perfil = rs.getString(6);
+                if(perfil.equals("admin")) {
+                    TelaPrincipal tela = new TelaPrincipal();
+                    tela.setVisible(true);
+                    tela.JMnItmUsuario.setEnabled(true);
+                    tela.jMnRelatorio.setEnabled(true);
+                    tela.jLblUsuario.setText(rs.getString(2));
+                    tela.jLblUsuario.setForeground();
+                }else {
+                    TelaPrincipal tela = new TelaPrincipal();
+                    tela.setVisible(true);
+                }
             } else {
                 //Dados incorretos
                 JOptionPane.showMessageDialog(null, "Dados incorretos!");
@@ -53,9 +63,64 @@ public class UsuarioDAO {
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro : " + erro);
         }
-
+        
+        
+    }
+    public void adicionarUsuario(Usuario obj){
+            
+            try {
+            String sql = "Insert into tbusuarios(iduser,usuario,fone,login,senha,perfil) values(?,?,?,?,md5(?),(?)";
+                conexao = ModuloConexao.conectar();
+                PreparedStatement stmt = conexao.prepareStatement(sql);
+                stmt.setInt(1, obj.getIdUser());
+                stmt.setString(2, obj.getUsuario());
+                stmt.setString(3, obj.getFone());
+                stmt.setString(4, obj.getLogin());
+                stmt.setString(5, obj.getSenha());
+                stmt.setString(6, obj.getPerfil());
+                
+                
+                stmt.execute();
+                stmt.close();
+                
+                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+        } catch (SQLIntegrityConstraintViolationException e1) {
+            JOptionPane.showMessageDialog(null, "Login em uso. Escolha outro login");
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+                try {
+                    conexao.close();
+                }catch(SQLException ex) {
+                    JOptionPane.showMessageDialog(null, ex);
+                }
+            }
     }
     
-    
-    
+    public Usuario buscarUsuario(int idUser) {
+        try {
+            String sql= "select * from tbusuarios WHERRE iduser = ?;";
+            conexao = ModuloConexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, idUser);
+            resultSet rs = stmt.executeQuery();
+            if(rs.next()) { 
+                Usuario usuario = new Usuario();
+                usuario.setIdUser(rs.getInt("iduser"));
+                usuario.setUsuario(rs.getString("usuario"));
+                usuario.setFone(rs.getString("fone"));
+                usuario.setLogin(rs.getString("login"));
+                usuario.setSenha(rs.getString("senha"));
+                usuario.setPerfil(rs.getString("perfil"));
+                
+                return usuario;
+                
+            }else {
+                JOptionPane.showMessageDialog(null, "Usuário não encontrado!!");
+            }          
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return null;
+    }
 }

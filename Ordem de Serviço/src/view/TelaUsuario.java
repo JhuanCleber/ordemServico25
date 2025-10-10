@@ -28,6 +28,7 @@ import java.sql.*;
 import jdbc.ModuloConexao;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  * Tela de gestão de usuários
@@ -254,9 +255,22 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUsuCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuCreateActionPerformed
+        Usuario obj = new Usuario();
         
+        obj.setIdUser(Integer.parseInt(txtUsuId.getText()));
+        obj.setUsuario(txtUsuId.getText());
+        obj.setFone(txtUsuFone.getText());
+        obj.setLogin(txtUsuLogin.getText());
+        obj.setSenha(txtUsuSenha.getText());
+        obj.setPerfil(cboUsuPerfil.getSelectedItem().toString()); 
+        
+         if ((txtUsuId.getText().isEmpty()) || (txtUsuNome.getText().isEmpty()) || (txtUsuLogin.getText().isEmpty()) || (txtUsuSenha.getPassword().length == 0) || cboUsuPerfil.getSelectedItem().equals(" ")) { 
+             JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios");
+         }  else { 
+            UsuarioDAO dao = new UsuarioDAO(); 
+            dao.alterarUsuario(obj);
     }//GEN-LAST:event_btnUsuCreateActionPerformed
-
+}       
     private void btnUsuUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuUpdateActionPerformed
         
 
@@ -267,7 +281,23 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnUsuDeleteActionPerformed
 
     private void btnUsuReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuReadActionPerformed
-       
+       if(txtUsuId.getText().isEmpty()) {
+           JOptionPane.showMessageDialog(null, "Informe o Id do uduário");
+           txtUsuId.requestFocus();
+       } else {
+           UsuarioDAO dao = new UsuarioDAO();
+           Usuario usuario = new Usuario();
+           usuario = dao.buscarUsuario(Integer.parseInt(txtUsuId.getText()));
+           
+           txtUsuNome.setText(usuario.getUsuario());
+           txtUsuLogin.setText(usuario.getLogin());
+           txtUsuSenha.setText(usuario.getSenha());
+           txtUsuFone.setText(usuario.getFone());
+           cboUsuPerfil.setSelectedItem(usuario.getPerfil());
+           btnUsuCreate.setEnable(false);
+           btnUsuUpdate.setEnable(true);
+           btnUsuDelete.setEnable(true);
+       }
     }//GEN-LAST:event_btnUsuReadActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
