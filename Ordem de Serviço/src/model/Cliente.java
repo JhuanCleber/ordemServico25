@@ -6,10 +6,10 @@ package model;
 
 /**
  *
- * @author GERAL
+ * @author clebe
  */
 public class Cliente {
-     private int id;
+    private int id;
     private String nome;
     private String endereco;
     private String fone;
@@ -87,4 +87,8 @@ public class Cliente {
         final Cliente other = (Cliente) obj;
         return this.id == other.id;
     }
+    
+    
+    
+    
 }

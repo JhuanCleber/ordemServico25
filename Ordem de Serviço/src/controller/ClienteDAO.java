@@ -4,10 +4,6 @@
  */
 package controller;
 
-/**
- *
- * @author clebe
- */
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -100,9 +96,5 @@ public class ClienteDAO {
             return null;
         }
     }
-    /**
-     * Método responsável pela pesquisa de clientes pelo nome com filtro
-     */
-  
 
 }

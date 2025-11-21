@@ -119,11 +119,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMnItmCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMnItmCliente.setText("Cliente");
-        jMnItmCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMnItmClienteMouseClicked(evt);
-            }
-        });
         jMnItmCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMnItmClienteActionPerformed(evt);
@@ -133,6 +128,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMnItmServico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMnItmServico.setText("Ordem Serviço");
+        jMnItmServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnItmServicoActionPerformed(evt);
+            }
+        });
         jMnCadastro.add(jMnItmServico);
 
         jMnItmUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -168,11 +168,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jMnSobreMouseClicked(evt);
             }
         });
-        jMnSobre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMnSobreActionPerformed(evt);
-            }
-        });
         jMenuBar1.add(jMnSobre);
 
         jMenu1.setMnemonic('g');
@@ -206,32 +201,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel2)))
+                                .addComponent(jLabel4)
+                                .addGap(0, 11, Short.MAX_VALUE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel4)
-                .addGap(84, 84, 84)
-                .addComponent(jLabel2)
-                .addGap(56, 56, 56)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(56, 56, 56)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 37, Short.MAX_VALUE))
         );
 
         pack();
@@ -269,20 +264,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMnItmClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMnItmClienteMouseClicked
-        TelaCliente tela = new TelaCliente();
-        tela.setVisible(true);
-    }//GEN-LAST:event_jMnItmClienteMouseClicked
-
     private void jMnItmClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnItmClienteActionPerformed
         TelaCliente tela = new TelaCliente();
         tela.setVisible(true);
         jDesktopPane1.add(tela);
     }//GEN-LAST:event_jMnItmClienteActionPerformed
 
-    private void jMnSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnSobreActionPerformed
+    private void jMnItmServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnItmServicoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMnSobreActionPerformed
+    }//GEN-LAST:event_jMnItmServicoActionPerformed
 
     /**
      * @param args the command line arguments

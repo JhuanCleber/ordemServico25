@@ -6,13 +6,11 @@ package controller;
 
 import java.awt.Color;
 import java.awt.HeadlessException;
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import jdbc.ModuloConexao;
 import model.Usuario;
@@ -26,7 +24,6 @@ import view.TelaPrincipal;
 public class UsuarioDAO {
 
     private Connection conexao;
-    private Object con;
 
     public UsuarioDAO() {
         this.conexao = ModuloConexao.conectar();
@@ -38,7 +35,7 @@ public class UsuarioDAO {
         try {
 
             //1 passo - criar SQL
-            String sql = "select * from tbusuarios where login = ? and senha = ? ";
+            String sql = "select * from tbusuarios where login = ? and senha = md5(?)";
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(sql);
             stmt.setString(1, usuario);
@@ -122,7 +119,7 @@ public class UsuarioDAO {
 
         try {
             //1 passo - criar o sql
-            String sql = "update tbusuarios set  usuario=?, fone=?, login=?, senha=?, perfil=? where iduser=?";
+            String sql = "update tbusuarios set  usuario=?, fone=?, login=?, senha=md5(?), perfil=? where iduser=?";
             //2 passo o conectar o banco de dados e organizar o comando sql
             conexao = ModuloConexao.conectar();
             PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -191,12 +188,6 @@ public class UsuarioDAO {
             JOptionPane.showMessageDialog(null, e);
         }
         return null;
-    }    
-    
-    /**
-     *
-     * @return
-     */
+    }
 
 }
-

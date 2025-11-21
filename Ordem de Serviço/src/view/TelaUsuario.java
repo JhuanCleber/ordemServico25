@@ -82,7 +82,6 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setTitle("Usuários");
         setPreferredSize(new java.awt.Dimension(640, 480));
-        setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameActivated(evt);

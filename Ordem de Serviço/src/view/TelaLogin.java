@@ -144,18 +144,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Senha");
 
-        jTxtUsario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtUsarioActionPerformed(evt);
-            }
-        });
-
-        jTxtSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtSenhaActionPerformed(evt);
-            }
-        });
-
         jBtnLogin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBtnLogin.setMnemonic('e');
         jBtnLogin.setText("Entrar");
@@ -262,14 +250,6 @@ public class TelaLogin extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jBtnLoginKeyPressed
-
-    private void jTxtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtSenhaActionPerformed
-
-    private void jTxtUsarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtUsarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtUsarioActionPerformed
 
     /**
      * @param args the command line arguments
